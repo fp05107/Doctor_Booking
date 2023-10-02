@@ -3,14 +3,13 @@ import {
   ImageBackground,
   TextInput,
   ScrollView,
-  TouchableOpacity,
+  Image,
 } from 'react-native';
 import React from 'react';
 import styles from '../../styles/Signup.styles';
 import Globals from '../../config/constants.config';
 import {
   Box,
-  Image,
   Heading,
   Text,
   HStack,
@@ -21,8 +20,9 @@ import {
 } from 'native-base';
 import {COLORS} from '../../config/colors.config';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faFacebook} from '@fortawesome/free-brands-svg-icons';
+import {faFacebook, faGoogle} from '@fortawesome/free-brands-svg-icons';
 import GlobalStyles from '../../styles/Global.styles';
+import LinearGradient from 'react-native-linear-gradient';
 
 type SignupNavigationProp = {
   navigation: any;
@@ -47,10 +47,13 @@ const Signup = ({navigation}: SignupNavigationProp) => {
           </Heading>
           <Image
             source={require('../../../assets/BackgroundImages/signupheader.png')}
-            size={'xl'}
-            alt="signup"
+            style={{
+              width: '95%',
+              height: Globals.windowHeight * 0.1,
+              marginVertical: 10,
+            }}
           />
-          <Box h={100}>
+          <Box h={100} mt={5}>
             <Text size={'xs'} color={COLORS.White} textAlign={'center'}>
               VHA is an innovated, automated system and the very first
               blockchain based Virtual Health Assistant that will provide
@@ -59,7 +62,7 @@ const Signup = ({navigation}: SignupNavigationProp) => {
           </Box>
           <HStack marginY={5} w={'95%'} justifyContent={'space-between'}>
             <Pressable style={styles.fbGoogleBtn}>
-              <FontAwesomeIcon color={COLORS.White} icon={faFacebook} />
+              <FontAwesomeIcon color={COLORS.White} icon={faGoogle} />
               <Text color={COLORS.White}>Facebook</Text>
             </Pressable>
             <Pressable style={styles.fbGoogleBtn}>
@@ -72,28 +75,30 @@ const Signup = ({navigation}: SignupNavigationProp) => {
               placeholderTextColor={COLORS.InputPlaceholder}
               style={GlobalStyles.inputStyles}
               variant="filled"
-              placeholder="Filled"
+              placeholder="Name"
             />
             <Input
               placeholderTextColor={COLORS.InputPlaceholder}
               style={GlobalStyles.inputStyles}
               variant="filled"
-              placeholder="Filled"
+              placeholder="Email"
             />
             <Input
               placeholderTextColor={COLORS.InputPlaceholder}
               style={GlobalStyles.inputStyles}
               variant="filled"
-              placeholder="Filled"
+              placeholder="Password"
             />
           </VStack>
-          <Button bgColor={'#46AA72'} w={'80%'} marginY={5} p={3} size="sm">
-            Sign Up
-          </Button>
+          <LinearGradient colors={['#46AA72', '#3FA780', '#38A58D']}>
+            {/* <Button bgColor={'#46AA72'} w={'80%'} marginY={5} p={3} size="sm"> */}
+            <Text> Sign Up</Text>
+            {/* </Button> */}
+          </LinearGradient>
           <HStack>
-            <Text color={COLORS.White}>Have an account?</Text>
+            <Text color={COLORS.Secondary}>Have an account?</Text>
             <Pressable>
-              <Text color={COLORS.White}> Login</Text>
+              <Text color={COLORS.Secondary}> Login</Text>
             </Pressable>
           </HStack>
         </Box>
