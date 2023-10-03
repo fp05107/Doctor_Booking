@@ -1,12 +1,16 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import {View, Text} from 'react-native';
+import React from 'react';
 
-const Home = () => {
+type HomeNavigationProp = {
+  navigation: any;
+};
+
+const Home = ({navigation}: HomeNavigationProp) => {
   return (
     <View>
       <Text>Home</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
