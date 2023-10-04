@@ -12,6 +12,7 @@ import Home from '../screens/Home/Home';
 import VerifyOtp from '../screens/Auth/VerifyOtp';
 import ForgotPassword from '../screens/Auth/ForgotPassword';
 import ResetPassword from '../screens/Auth/ResetPassword';
+import BottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -54,7 +55,7 @@ const StackNavigator = () => {
               {props => <QualifiedDoctors {...props} />}
             </Stack.Screen>
             <Stack.Screen name="Home" options={{headerShown: false}}>
-              {props => <Home {...props} />}
+              {props => <BottomTabNavigator {...props} />}
             </Stack.Screen>
             <Stack.Screen name="Bestchemist" options={{headerShown: false}}>
               {props => <Bestchemist {...props} />}
