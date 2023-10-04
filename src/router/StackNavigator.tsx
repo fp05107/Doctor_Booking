@@ -54,14 +54,26 @@ const StackNavigator = () => {
               options={{headerShown: false}}>
               {props => <QualifiedDoctors {...props} />}
             </Stack.Screen>
-            <Stack.Screen name="Home" options={{headerShown: false}}>
-              {props => <BottomTabNavigator {...props} />}
-            </Stack.Screen>
             <Stack.Screen name="Bestchemist" options={{headerShown: false}}>
               {props => <Bestchemist {...props} />}
             </Stack.Screen>
             <Stack.Screen name="EasyAppointment" options={{headerShown: false}}>
               {props => <EasyAppointment {...props} />}
+            </Stack.Screen>
+            <Stack.Screen name="Home" options={{headerShown: false}}>
+              {props => <BottomTabNavigator {...props} />}
+            </Stack.Screen>
+            <Stack.Screen name="Wallet" options={{headerShown: false}}>
+              {props => <BottomTabNavigator {...props} />}
+            </Stack.Screen>
+            <Stack.Screen name="Location" options={{headerShown: false}}>
+              {props => <BottomTabNavigator {...props} />}
+            </Stack.Screen>
+            <Stack.Screen name="Shop" options={{headerShown: false}}>
+              {props => <BottomTabNavigator {...props} />}
+            </Stack.Screen>
+            <Stack.Screen name="Profile" options={{headerShown: false}}>
+              {props => <BottomTabNavigator {...props} />}
             </Stack.Screen>
           </Stack.Navigator>
         )}
