@@ -1,16 +1,11 @@
 import React, {useRef, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Alert,
-  TextInput,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import {StyleSheet, ScrollView, ImageBackground, Image} from 'react-native';
 
 import OTPTextView from 'react-native-otp-textinput';
+import Globals from '../../config/constants.config';
+import {Box, Pressable, Text} from 'native-base';
+import {COLORS} from '../../config/colors.config';
+import LinearGradient from 'react-native-linear-gradient';
 
 type VerifyOtpProp = {
   navigation: any;
@@ -20,75 +15,42 @@ const VerifyOtp = ({navigation}: VerifyOtpProp) => {
   const [otpInput, setOtpInput] = useState<string>('');
 
   const input = useRef<OTPTextView>(null);
-
-  const clear = () => input.current?.clear();
-
-  const updateOtpText = () => input.current?.setValue(otpInput);
-
-  const showTextAlert = () => otpInput && Alert.alert(otpInput);
-
-  const handleCellTextChange = async (text: string, i: number) => {
-    // if (i === 0) {
-    //   const clippedText = await Clipboard.getString();
-    //   if (clippedText.slice(0, 1) === text) {
-    //     input.current?.setValue(clippedText, true);
-    //   }
-    // }
-  };
+  const handleCellTextChange = async (text: string, i: number) => {};
   return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <OTPTextView
-          ref={input}
-          containerStyle={styles.textInputContainer}
-          handleTextChange={setOtpInput}
-          handleCellTextChange={handleCellTextChange}
-          inputCount={4}
-          keyboardType="numeric"
-        />
-        <TextInput
-          maxLength={4}
-          onChangeText={setOtpInput}
-          style={styles.textInput}
-        />
-        <View style={styles.buttonWrapper}>
-          <Button title="Clear" onPress={clear} />
-          <Button title="Update" onPress={updateOtpText} />
-          <Button title="Submit" onPress={showTextAlert} />
-        </View>
-        <Text style={styles.instructions}>Customizations</Text>
-        <OTPTextView
-          handleTextChange={() => {}}
-          containerStyle={styles.textInputContainer}
-          textInputStyle={styles.roundedTextInput}
-          inputCount={5}
-          inputCellLength={2}
-        />
-        <OTPTextView
-          handleTextChange={() => {}}
-          containerStyle={styles.textInputContainer}
-          textInputStyle={styles.roundedTextInput}
-          defaultValue="1234"
-        />
-        <OTPTextView
-          handleTextChange={() => {}}
-          containerStyle={styles.textInputContainer}
-          tintColor="#000"
-        />
-        <TextInput />
-        <OTPTextView
-          handleTextChange={() => {}}
-          containerStyle={styles.textInputContainer}
-          tintColor={['#FF0000', '#FFFF00', '#00FF00', '#0000FF']}
-        />
-        <OTPTextView
-          handleTextChange={() => {}}
-          containerStyle={styles.textInputContainer}
-          tintColor="#000"
-          offTintColor={['#FF0000', '#FFFF00', '#00FF00', '#0000FF']}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView>
+      <ImageBackground
+        style={{flex: 1, height: Globals.windowHeight}}
+        source={require('../../../assets/BackgroundImages/allscreenbg.png')}>
+        <Box w={'95%'} alignSelf={'center'} mt={10} p={5} alignItems={'center'}>
+          <Image
+            source={require('../../../assets/BackgroundImages/signupheader.png')}
+            style={{
+              width: '95%',
+              height: Globals.windowHeight * 0.1,
+              marginVertical: 10,
+            }}
+          />
+          <Text marginY={5} color={COLORS.White}>
+            Enter 4 digit OTP sent to your registered email
+          </Text>
+          <OTPTextView
+            handleTextChange={() => {}}
+            containerStyle={styles.textInputContainer}
+            textInputStyle={styles.roundedTextInput}
+            inputCount={4}
+            inputCellLength={1}
+          
+          />
+          <LinearGradient
+            style={{borderRadius: 10, marginTop: 20, marginBottom: 5}}
+            colors={['#46AA72', '#3FA780', '#38A58D']}>
+            <Pressable paddingX={100} paddingY={3}>
+              <Text color={COLORS.White}>Verify Otp</Text>
+            </Pressable>
+          </LinearGradient>
+        </Box>
+      </ImageBackground>
+    </ScrollView>
   );
 };
 
@@ -123,6 +85,7 @@ const styles = StyleSheet.create({
   roundedTextInput: {
     borderRadius: 10,
     borderWidth: 4,
+    color: COLORS.White
   },
   buttonWrapper: {
     flexDirection: 'row',

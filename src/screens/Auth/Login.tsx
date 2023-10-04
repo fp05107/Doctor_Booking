@@ -45,13 +45,11 @@ const Login = ({navigation}: LoginProps) => {
     navigation.navigate('SignUp');
   };
 
-  const handleLoginPress = () => {
-
-  }
+  const handleLoginPress = () => {};
 
   const handleForgotPassword = () => {
-    navigation.navigate("VerifyOtp");
-  }
+    navigation.navigate('ForgotPassword');
+  };
 
   return (
     <ScrollView style={{flex: 1}}>
@@ -114,7 +112,7 @@ const Login = ({navigation}: LoginProps) => {
             </Pressable>
           </LinearGradient>
 
-          <Pressable onPress={handleForgotPassword} >
+          <Pressable onPress={handleForgotPassword}>
             <Text color={COLORS.Secondary}> Forgot Password?</Text>
           </Pressable>
           <HStack mt={20}>
