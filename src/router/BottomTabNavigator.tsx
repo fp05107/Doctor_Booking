@@ -19,6 +19,8 @@ const BottomTabNavigator = ({navigation}: BottomTabNavigationProp) => {
       initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: '#00FFFF',
+        tabBarActiveBackgroundColor: '#0D0D0D',
+        tabBarInactiveBackgroundColor: '#0D0D0D',
       }}>
       <Tab.Screen
         name="Home"
