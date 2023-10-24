@@ -1,11 +1,12 @@
 import {View} from 'react-native';
 import React from 'react';
-import {Box, Avatar, VStack, Text} from 'native-base';
+import {Box, Avatar, VStack, Text, HStack} from 'native-base';
+import {StyleSheet} from 'react-native';
 
 const Profile = () => {
   return (
     <View>
-      <Box mt={10} >
+      <Box mt={10}>
         <Avatar
           bg="purple.600"
           alignSelf="center"
@@ -16,10 +17,50 @@ const Profile = () => {
           RB
         </Avatar>
       </Box>
-      <VStack alignSelf={'center'} justifyContent={'center'} >
+      <VStack
+        alignSelf={'center'}
+        justifyContent={'center'}
+        alignItems={'center'}>
         <Text fontSize="2xl">Subham Sahoo</Text>
         <Text fontSize="md">Website: https://subham-sahoo.vercel.app</Text>
-        <Text fontSize="2xl">Address: Soro, Odisha</Text>
+        <Text fontSize="md">Address: Soro, Odisha</Text>
+      </VStack>
+
+      <VStack
+        width={'90%'}
+        alignSelf={'center'}
+        borderWidth={StyleSheet.hairlineWidth}
+        borderRadius={5}
+        marginY={3}
+        paddingLeft={5}>
+        <Text fontSize="xl">About</Text>
+      </VStack>
+      <VStack
+        width={'90%'}
+        alignSelf={'center'}
+        borderWidth={StyleSheet.hairlineWidth}
+        borderRadius={5}
+        marginY={3}
+        paddingLeft={5}>
+        <Text fontSize="xl">About</Text>
+      </VStack>
+      <VStack
+        width={'90%'}
+        alignSelf={'center'}
+        borderWidth={StyleSheet.hairlineWidth}
+        borderRadius={5}
+        marginY={3}
+        paddingLeft={5}>
+        <Text fontSize="xl">About</Text>
+      </VStack>
+      <VStack
+        width={'90%'}
+        alignSelf={'center'}
+        borderWidth={StyleSheet.hairlineWidth}
+        borderRadius={5}
+        marginY={3}
+        paddingLeft={5}>
+        <Text fontSize="xl">About</Text>
       </VStack>
     </View>
   );
