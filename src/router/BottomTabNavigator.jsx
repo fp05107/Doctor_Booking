@@ -2,6 +2,9 @@ import React from 'react';
 import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home/Home';
+import Wallet from '../screens/Wallet/Wallet';
+import Location from '../screens/Location/Location';
+import Shop from '../screens/Shop/Shop';
 import Profile from '../screens/Profile/Profile';
 import Chat from '../screens/Chat/Chat';
 
