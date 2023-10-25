@@ -6,12 +6,14 @@ import Wallet from '../screens/Wallet/Wallet';
 import Location from '../screens/Location/Location';
 import Shop from '../screens/Shop/Shop';
 import Profile from '../screens/Profile/Profile';
-import Chat from '../screens/Chat/Chat';
 
 const Tab = createBottomTabNavigator();
 
+type BottomTabNavigationProp = {
+  navigation: any;
+};
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({navigation}: BottomTabNavigationProp) => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -35,14 +37,42 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Chat"
-        component={Chat}
+        name="Wallet"
+        component={Wallet}
         options={{
           headerShown: false,
           tabBarLabel: '',
           tabBarIcon: ({color, size}) => (
             <Image
               source={require('../../assets/BottomTabIcons/wallet.png')}
+              style={{width: 25, height: 25, tintColor: color}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Location"
+        component={Location}
+        options={{
+          headerShown: false,
+          tabBarLabel: '',
+          tabBarIcon: ({color, size}) => (
+            <Image
+              source={require('../../assets/BottomTabIcons/location.png')}
+              style={{width: 20, height: 27, tintColor: color}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Shop"
+        component={Shop}
+        options={{
+          headerShown: false,
+          tabBarLabel: '',
+          tabBarIcon: ({color, size}) => (
+            <Image
+              source={require('../../assets/BottomTabIcons/shop.png')}
               style={{width: 25, height: 25, tintColor: color}}
             />
           ),
