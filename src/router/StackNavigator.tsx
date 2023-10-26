@@ -29,6 +29,7 @@ const StackNavigator = () => {
   if (loaded) {
     return (
       <NavigationContainer>
+          {/* <BottomTabNavigator  /> */}
         {!isLoggedIn ? (
           <Stack.Navigator>
             <Stack.Screen name="Login" options={{headerShown: false}}>
@@ -77,6 +78,7 @@ const StackNavigator = () => {
             </Stack.Screen>
           </Stack.Navigator>
         )}
+      
       </NavigationContainer>
     );
   } else {

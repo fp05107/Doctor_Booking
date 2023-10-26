@@ -1,148 +1,171 @@
-import {View, } from 'react-native';
+import {View, ImageBackground} from 'react-native';
 import React from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import LinearGradient from 'react-native-linear-gradient';
 import {
-  Avatar,
   Box,
-  FlatList,
   HStack,
   Heading,
-  Spacer,
   VStack,
-  Text
+  Text,
+  Avatar,
+  StatusBar,
+  Pressable,
+  FlatList,
+  Image,
+  ScrollView,
 } from 'native-base';
+import {COLORS} from '../../config/colors.config';
+import Globals from '../../config/constants.config';
+import {
+  CommonDisease,
+  Doctor,
+  Doctors,
+  Stores,
+  Store,
+  commonDiseases,
+} from '../../Data/HomeData';
+import {Rating, AirbnbRating} from 'react-native-ratings';
 
-const Home = () => {
-  const posts = [
-    {
-      image:
-        'https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?auto=format&fit=crop&q=80&w=2008&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'Subham',
-      location: 'soro',
-    },
-    {
-      image:
-        'https://plus.unsplash.com/premium_photo-1683910767532-3a25b821f7ae?auto=format&fit=crop&q=80&w=2008&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      name: 'Subham',
-      location: 'soro',
-    },
-  ];
-  const renderPosts = () => {
+type HomeNavigationProp = {
+  navigation: any;
+};
+
+const Home = ({navigation}: HomeNavigationProp) => {
+  const handleProfilePress = () => {
+    navigation.navigate('Profile');
+  };
+
+  const renderDiseases = ({item}: {item: CommonDisease}) => {
     return (
-      <Box marginY={5}>
-        <HStack>
-          <Avatar
-            bg="purple.600"
-            alignSelf="center"
-            size="md"
-            source={{
-              uri: 'https://images.unsplash.com/photo-1510771463146-e89e6e86560e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
-            }}>
-            RB
-          </Avatar>
-          <Text fontSize="2xl">Subham Sahoo</Text>
-        </HStack>
+      <Box
+        h={Globals.windowHeight * 0.11}
+        w={Globals.windowWidth * 0.19}
+        bg={item.backgroundColor}
+        p={3}
+        m={2}
+        borderRadius={5}
+        justifyContent={'center'}
+        alignItems={'center'}>
+        <Image
+          source={item.icon}
+          alt="image"
+          style={{
+            height: '60%',
+            width: '80%',
+          }}
+        />
+        <Text color={'#FFF'}>{item.name}</Text>
       </Box>
     );
   };
-  const data = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      fullName: 'Aafreen Khan',
-      timeStamp: '12:47 PM',
-      recentText: 'Good Day!',
-      avatarUrl:
-        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      fullName: 'Sujitha Mathur',
-      timeStamp: '11:11 PM',
-      recentText: 'Cheer up, there!',
-      avatarUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyEaZqT3fHeNrPGcnjLLX1v_W4mvBlgpwxnA&usqp=CAU',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      fullName: 'Anci Barroco',
-      timeStamp: '6:22 PM',
-      recentText: 'Good Day!',
-      avatarUrl: 'https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg',
-    },
-    {
-      id: '68694a0f-3da1-431f-bd56-142371e29d72',
-      fullName: 'Aniket Kumar',
-      timeStamp: '8:56 PM',
-      recentText: 'All the best',
-      avatarUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU',
-    },
-    {
-      id: '28694a0f-3da1-471f-bd96-142456e29d72',
-      fullName: 'Kiara',
-      timeStamp: '12:47 PM',
-      recentText: 'I will call today.',
-      avatarUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU',
-    },
-  ];
+
+  const renderDoctors = ({item}: {item: Doctor}) => {
+    return (
+      <Box
+        bg={'#222338'}
+        alignItems={'center'}
+        borderRadius={10}
+        m={2}
+        h={Globals.windowHeight * 0.16}
+        pb={3}
+        w={Globals.windowWidth * 0.3}>
+        <Avatar source={item.icon} size={'lg'} marginY={2} ></Avatar>
+        <Heading size={'xs'} color={COLORS.White}>
+          {item.name}
+        </Heading>
+        <Text size={'xs'} color={COLORS.White}>
+          {item.ratePerHour}
+        </Text>
+      </Box>
+    );
+  };
+
+  const renderStores = ({item}: {item: Store}) => {
+    return (
+      <Box
+        bg={'#222338'}
+        alignItems={'center'}
+        borderRadius={10}
+        m={2}
+        h={Globals.windowHeight * 0.32}
+        pb={3}
+        w={Globals.windowWidth * 0.5}>
+        <Image
+          style={{width: '100%', height: '70%'}}
+          source={item.image}
+          alt="image"
+          mb={3}
+        />
+
+        <Rating
+          type="heart"
+          ratingCount={5}
+          imageSize={20}
+          ratingBackgroundColor={'red'}
+          tintColor="rgba(0, 0, 0, 1)"
+        />
+        <Heading textAlign={'center'} color={COLORS.White} size={'sm'}>
+          {item.name}
+        </Heading>
+        <Text textAlign={'center'} color={COLORS.White} size={'md'}>
+          Medical Store
+        </Text>
+      </Box>
+    );
+  };
 
   return (
-      <Box>
-        <Heading fontSize="xl" p="4" pb="3">
-          Inbox
-        </Heading>
-        <FlatList
-          data={data}
-          renderItem={({item}) => (
-            <Box
-              borderBottomWidth="1"
-              _dark={{
-                borderColor: 'muted.50',
-              }}
-              borderColor="muted.800"
-              pl={['0', '4']}
-              pr={['0', '5']}
-              py="2">
-              <HStack space={[2, 3]} justifyContent="space-between">
-                <Avatar
-                  size="48px"
-                  source={{
-                    uri: item.avatarUrl,
-                  }}
-                />
-                <VStack>
-                  <Text
-                    _dark={{
-                      color: 'warmGray.50',
-                    }}
-                    color="coolGray.800"
-                    bold>
-                    {item.fullName}
-                  </Text>
-                  <Text
-                    color="coolGray.600"
-                    _dark={{
-                      color: 'warmGray.200',
-                    }}>
-                    {item.recentText}
-                  </Text>
-                </VStack>
-                <Spacer />
-                <Text
-                  fontSize="xs"
-                  _dark={{
-                    color: 'warmGray.50',
-                  }}
-                  color="coolGray.800"
-                  alignSelf="flex-start">
-                  {item.timeStamp}
-                </Text>
-              </HStack>
-            </Box>
-          )}
-          keyExtractor={item => item.id}
-        />
-      </Box>
+    <View>
+      <StatusBar backgroundColor={COLORS.Secondary} />
+
+      <LinearGradient colors={['#46AA72', '#2DA0A4']}>
+        <HStack p={3} justifyContent={'space-between'}>
+          <VStack>
+            <Text color={COLORS.White}>Hi Olivia Doe </Text>
+            <Heading color={COLORS.White}>Welcome To VHA</Heading>
+          </VStack>
+          <Pressable onPress={handleProfilePress}>
+            <Avatar
+              bg="green.500"
+              size={'lg'}
+              source={require('../../../assets/HomeScreenImages/profile.png')}>
+              AJ
+            </Avatar>
+          </Pressable>
+        </HStack>
+      </LinearGradient>
+      <ScrollView>
+        <ImageBackground
+          style={{flex: 1, height: Globals.windowHeight}}
+          source={require('../../../assets/BackgroundImages/allscreenbg.png')}>
+          <Box w={'95%'} borderWidth={1} alignSelf={'center'} mt={3}>
+            <Heading size={'md'} color={COLORS.White}>
+              Common Dieases
+            </Heading>
+            <FlatList
+              data={commonDiseases}
+              renderItem={renderDiseases}
+              horizontal
+            />
+          </Box>
+          <Box w={'95%'} borderWidth={1} alignSelf={'center'} mt={3}>
+            <Heading size={'md'} color={COLORS.White}>
+              Medical Stores
+            </Heading>
+
+            <FlatList renderItem={renderStores} data={Stores} horizontal />
+          </Box>
+          <Box w={'95%'} borderWidth={1} alignSelf={'center'} mt={3}>
+            <Heading size={'md'} color={COLORS.White}>
+              Qualified Doctors
+            </Heading>
+
+            <FlatList renderItem={renderDoctors} data={Doctors} horizontal />
+          </Box>
+        </ImageBackground>
+      </ScrollView>
+    </View>
   );
 };
 
